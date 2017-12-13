@@ -1,0 +1,27 @@
+*** Dim Connection As New SqlConnection (Call it is that: SqlCommand) 
+Private Sub department_ComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles department_ComboBox.SelectedIndexChanged
+Or use Form Load too
+Private Sub INPUT_STAFF_ATTENDANCE_Form_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        Dim Connection As New SqlConnection("Server=192.168.101.31;Database=NU_DB;User Id=sa;Password=123")
+        Dim command As New SqlCommand("SELECT [DepartmentName] FROM [PERSONS]", Connection)
+        Dim adapter As New SqlDataAdapter(command)
+        Dim table As New DataTable()
+        adapter.Fill(table)
+        department_ComboBox.DataSource = table
+        department_ComboBox.DisplayMember = "DepartmentName"
+        department_ComboBox.ValueMember = "DepartmentName"
+    End Sub
+*** Dim connectionString as String (Call it is that ConnectionStringC)
+Private Sub department_ComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles department_ComboBox.SelectedIndexChanged
+Or use Form Load too 
+Private Sub INPUT_STAFF_ATTENDANCE_Form_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load 
+        Dim ConnectionString As String = "Server=192.168.101.31;Database=NU_DB;User Id=sa;Password=123"
+        Dim Conn As New SqlConnection(ConnectionString)
+        Dim command As New SqlCommand("SELECT  distinct [DepartmentName] FROM [PERSONS]", Conn)
+        Dim adapter As New SqlDataAdapter(command)
+        Dim table As New DataTable()
+        adapter.Fill(table)
+        department_ComboBox.DataSource = table
+        department_ComboBox.DisplayMember = "DepartmentName"
+        department_ComboBox.ValueMember = "DepartmentName"
+    End Sub
